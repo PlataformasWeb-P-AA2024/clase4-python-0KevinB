@@ -6,17 +6,10 @@ print(len(lineas))
 
 lineas = [l.split("|") for l in lineas]
 
-for x in lineas:
-    cadena = "Torneo: %s\nGanador: %s\n----------" % (x[0], x[9])
-    print(cadena)
-
-
-for x in lineas:
+# El archivo 0 son las cabeceras 
+for i, x in enumerate(lineas, 0):
     cadena = """
             <b>Torneo:</b> %s <br> <b> Ganador: </br> %s
             """ % (x[0], x[9])
-for i in range (1, len(x)):
-    archivo_generado = open("data/%s.html" % (i), "w")
-    archivo_generado.writable("%s\n" % (cadena))
-    archivo_generado.close()
-    
+    with open("data/%s.html" % i, "w") as archivo_generado:
+        archivo_generado.write("%s\n" % cadena)
